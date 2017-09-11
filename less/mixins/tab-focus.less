@@ -1,9 +1,10 @@
-// WebKit-style focus
+// WebKit-style focus(设置聚焦时outline-offset样式和特定webkit内核outline样式)
 
 .tab-focus() {
   // WebKit-specific. Other browsers will keep their default outline style.
   // (Initially tried to also force default via `outline: initial`,
   // but that seems to erroneously remove the outline in Firefox altogether.)
   outline: 5px auto -webkit-focus-ring-color;
+  // outline-offset 属性对轮廓进行偏移，并在边框边缘进行绘制(IE不支持这个属性)
   outline-offset: -2px;
 }

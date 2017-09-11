@@ -18,7 +18,7 @@
        url('@{icon-font-path}@{icon-font-name}.svg#@{icon-font-svg-id}') format('svg');
 }
 
-// Catchall baseclass
+// Catchall baseclass(基础类样式)
 .glyphicon {
   position: relative;
   top: 1px;
@@ -27,11 +27,11 @@
   font-style: normal;
   font-weight: normal;
   line-height: 1;
-  -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;  //抗锯齿
   -moz-osx-font-smoothing: grayscale;
 }
 
-// Individual icons
+// Individual icons(单个图标)
 .glyphicon-asterisk               { &:before { content: "\002a"; } }
 .glyphicon-plus                   { &:before { content: "\002b"; } }
 .glyphicon-euro,

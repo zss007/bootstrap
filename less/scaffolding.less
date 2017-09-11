@@ -1,9 +1,9 @@
 //
-// Scaffolding
+// Scaffolding(脚手架)
 // --------------------------------------------------
 
 
-// Reset the box-sizing
+// Reset the box-sizing(content-box:标准盒模型；border-box:IE低版本/怪异模式)
 //
 // Heads up! This reset may cause conflicts with some third-party widgets.
 // For recommendations on resolving such conflicts, see
@@ -77,20 +77,20 @@ img {
   vertical-align: middle;
 }
 
-// Responsive images (ensure images don't scale beyond their parents)
+// Responsive images (ensure images don't scale beyond their parents，响应式图片展示防止图片拉伸超出父元素)
 .img-responsive {
   .img-responsive();
 }
 
-// Rounded corners
+// Rounded corners(圆角)
 .img-rounded {
   border-radius: @border-radius-large;
 }
 
-// Image thumbnails
+// Image thumbnails(缩略图)
 //
 // Heads up! This is mixin-ed into thumbnails.less for `.thumbnail`.
-.img-thumbnail {
+.img-thumbnail{
   padding: @thumbnail-padding;
   line-height: @line-height-base;
   background-color: @thumbnail-bg;
@@ -102,7 +102,7 @@ img {
   .img-responsive(inline-block);
 }
 
-// Perfect circle
+// Perfect circle(圆图片，设置border-radius为50%)
 .img-circle {
   border-radius: 50%; // set radius in percents
 }
@@ -120,6 +120,7 @@ hr {
 
 // Only display content to screen readers
 //
+// 只在屏幕阅读器上使用
 // See: http://a11yproject.com/posts/how-to-hide-content
 
 .sr-only {
@@ -133,7 +134,7 @@ hr {
   border: 0;
 }
 
-// Use in conjunction with .sr-only to only display content when it's focused.
+// Use in conjunction(联合，连接) with .sr-only to only display content when it's focused.
 // Useful for "Skip to main content" links; see http://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
 // Credit: HTML5 Boilerplate
 
@@ -152,7 +153,9 @@ hr {
 
 // iOS "clickable elements" fix for role="button"
 //
-// Fixes "clickability" issue (and more generally, the firing of events such as focus as well)
+// 修复iOS的addEventListener监听click事件在不是交互元素上不触发的bug
+// 方案:1、设置cursor: pointer；2、添加onclick属性；3、使用交互性的元素如a；4、不使用click，使用事件委托到父元素
+// Fixes "clickability" issue (and more generally(更普遍地，更概括地), the firing of events such as focus as well)
 // for traditionally non-focusable elements with role="button"
 // see https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
 

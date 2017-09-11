@@ -1,11 +1,12 @@
 //
-// Typography
+// Typography(排版)
 // --------------------------------------------------
 
 
-// Headings
+// Headings(标题)
 // -------------------------
 
+// 常常会碰到在一个标题后面紧跟着一行小的副标题(small)
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: @headings-font-family;
@@ -52,26 +53,28 @@ h5, .h5 { font-size: @font-size-h5; }
 h6, .h6 { font-size: @font-size-h6; }
 
 
-// Body text
+// Body text(正文文本)
 // -------------------------
 
 p {
   margin: 0 0 (@line-height-computed / 2);
 }
 
+// 处理一个段落的文字，让其显示效果显著，强调内容
 .lead {
   margin-bottom: @line-height-computed;
   font-size: floor((@font-size-base * 1.15));
   font-weight: 300;
   line-height: 1.4;
 
+  //大中型浏览器字体稍大
   @media (min-width: @screen-sm-min) {
     font-size: (@font-size-base * 1.5);
   }
 }
 
 
-// Emphasis & misc
+// Emphasis & misc 强调突出
 // -------------------------
 
 // Ex: (12px small font / 14px base font) * 100% = about 85%
@@ -86,43 +89,44 @@ mark,
   padding: .2em;
 }
 
-// Alignment
+// Alignment(对齐)
 .text-left           { text-align: left; }
 .text-right          { text-align: right; }
 .text-center         { text-align: center; }
+// 适用于长文本排版，不过目前两端对齐在各浏览器下解析各有不同，特别是应用于中文文本的时候，所以项目中慎用
 .text-justify        { text-align: justify; }
 .text-nowrap         { white-space: nowrap; }
 
-// Transformation
+// Transformation(文本大小写转换)
 .text-lowercase      { text-transform: lowercase; }
 .text-uppercase      { text-transform: uppercase; }
 .text-capitalize     { text-transform: capitalize; }
 
-// Contextual colors
-.text-muted {
+// Contextual colors(文本颜色)
+.text-muted {  //提示
   color: @text-muted;
 }
-.text-primary {
+.text-primary {  //主要
   .text-emphasis-variant(@brand-primary);
 }
-.text-success {
+.text-success { //成功
   .text-emphasis-variant(@state-success-text);
 }
-.text-info {
+.text-info { //通知信息
   .text-emphasis-variant(@state-info-text);
 }
-.text-warning {
+.text-warning { //警告
   .text-emphasis-variant(@state-warning-text);
 }
-.text-danger {
+.text-danger {  //危险
   .text-emphasis-variant(@state-danger-text);
 }
 
-// Contextual backgrounds
-// For now we'll leave these alongside the text classes until v4 when we can
+// Contextual backgrounds(文本背景)
+// For now(目前，暂时) we'll leave these alongside the text classes until v4 when we can
 // safely shift things around (per SemVer rules).
 .bg-primary {
-  // Given the contrast here, this is the only class to have its color inverted
+  // Given the contrast(对比) here, this is the only class to have its color inverted
   // automatically.
   color: #fff;
   .bg-variant(@brand-primary);
@@ -141,7 +145,7 @@ mark,
 }
 
 
-// Page header
+// Page header(页面标题)
 // -------------------------
 
 .page-header {
@@ -151,7 +155,7 @@ mark,
 }
 
 
-// Lists
+// Lists(列表)
 // -------------------------
 
 // Unordered and Ordered lists
