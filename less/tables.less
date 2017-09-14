@@ -1,5 +1,5 @@
 //
-// Tables
+// Tables 表格
 // --------------------------------------------------
 
 
@@ -155,10 +155,15 @@ table {
 // inheritance to nested tables.
 
 // Generate the contextual variants
+// 当前活动
 .table-row-variant(active; @table-bg-active);
+// 成功或者正确的行为
 .table-row-variant(success; @state-success-bg);
+// 中立的信息或行为
 .table-row-variant(info; @state-info-bg);
+// 表示警告，需要特别注意
 .table-row-variant(warning; @state-warning-bg);
+// 表示危险或者可能是错误的行为
 .table-row-variant(danger; @state-danger-bg);
 
 

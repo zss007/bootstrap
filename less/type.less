@@ -171,13 +171,13 @@ ol {
 
 // List options
 
-// Unstyled keeps list items block level, just removes default browser padding and list-style
+// Unstyled keeps list items block level, just removes default browser padding and list-style(去点列表)
 .list-unstyled {
   padding-left: 0;
   list-style: none;
 }
 
-// Inline turns list items into inline-block
+// Inline turns list items into inline-block() (内联列表，为制作水平导航而生)
 .list-inline {
   .list-unstyled();
   margin-left: -5px;
@@ -189,7 +189,7 @@ ol {
   }
 }
 
-// Description Lists
+// Description Lists (定义列表)
 dl {
   margin-top: 0; // Remove browser default
   margin-bottom: @line-height-computed;
@@ -205,7 +205,7 @@ dd {
   margin-left: 0; // Undo browser default
 }
 
-// Horizontal description lists
+// Horizontal description lists (水平定义列表)
 //
 // Defaults to being stacked without any of the below styles applied, until the
 // grid breakpoint is reached (default of ~768px).
@@ -233,19 +233,20 @@ dd {
 // Misc
 // -------------------------
 
-// Abbreviations and acronyms
+// Abbreviations and acronyms(缩略词)
 abbr[title],
 // Add data-* attribute to help out our tooltip plugin, per https://github.com/twbs/bootstrap/issues/5257
 abbr[data-original-title] {
   cursor: help;
   border-bottom: 1px dotted @abbr-border-color;
 }
+// 词首字母缩略词
 .initialism {
   font-size: 90%;
   .text-uppercase();
 }
 
-// Blockquotes
+// Blockquotes(引用)
 blockquote {
   padding: (@line-height-computed / 2) @line-height-computed;
   margin: 0 0 @line-height-computed;
