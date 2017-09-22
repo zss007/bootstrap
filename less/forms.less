@@ -1,12 +1,10 @@
 //
-// Forms
+// Forms(表单)
 // --------------------------------------------------
 
-
-// Normalize non-controls
+// Normalize non-controls(定制非表单控件)
 //
 // Restyle and baseline non-control form elements.
-
 fieldset {
   padding: 0;
   margin: 0;
@@ -36,8 +34,7 @@ label {
   font-weight: bold;
 }
 
-
-// Normalize form controls
+// Normalize form controls(定制表单控件)
 //
 // While most of our form styles require extra classes, some basic normalization
 // is required to ensure optimum display with or without those classes to better
@@ -55,7 +52,6 @@ input[type="checkbox"] {
   margin-top: 1px \9; // IE8-9
   line-height: normal;
 }
-
 input[type="file"] {
   display: block;
 }
@@ -88,8 +84,7 @@ output {
   color: @input-color;
 }
 
-
-// Common form controls
+// Common form controls(普通的表单控件)
 //
 // Shared size and type resets for form controls. Apply `.form-control` to any
 // of the following form controls:
@@ -110,7 +105,6 @@ output {
 // input[type="search"]
 // input[type="tel"]
 // input[type="color"]
-
 .form-control {
   display: block;
   width: 100%;
@@ -161,18 +155,15 @@ output {
   }
 }
 
-
 // Search inputs in iOS
 //
 // This overrides the extra rounded corners on search inputs in iOS so that our
 // `.form-control` class can properly style them. Note that this cannot simply
 // be added to `.form-control` as it's not specific enough. For details, see
 // https://github.com/twbs/bootstrap/issues/11586.
-
 input[type="search"] {
   -webkit-appearance: none;
 }
-
 
 // Special styles for iOS temporal inputs
 //
@@ -182,7 +173,6 @@ input[type="search"] {
 // for Safari. See https://bugs.webkit.org/show_bug.cgi?id=139848
 //
 // Note that as of 9.3, iOS doesn't support `week`.
-
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   input[type="date"],
   input[type="time"],
@@ -204,21 +194,18 @@ input[type="search"] {
   }
 }
 
-
-// Form groups
+// Form groups(表单组)
 //
 // Designed to help with the organization and spacing of vertical forms. For
 // horizontal forms, use the predefined grid classes.
-
 .form-group {
   margin-bottom: @form-group-margin-bottom;
 }
 
 
-// Checkboxes and radios
+// Checkboxes and radios(表单控件:复选框checkbox和单选框radio)
 //
 // Indent the labels to position radios/checkboxes as hanging controls.
-
 .radio,
 .checkbox {
   position: relative;
@@ -242,13 +229,12 @@ input[type="search"] {
   margin-left: -20px;
   margin-top: 4px \9;
 }
-
 .radio + .radio,
 .checkbox + .checkbox {
   margin-top: -5px; // Move up sibling radios or checkboxes for tighter spacing
 }
 
-// Radios and checkboxes on same line
+// Radios and checkboxes on same line(复选框和单选框水平排列)
 .radio-inline,
 .checkbox-inline {
   position: relative;
@@ -265,7 +251,7 @@ input[type="search"] {
   margin-left: 10px; // space out consecutive inline controls
 }
 
-// Apply same disabled cursor tweak as for inputs
+// Apply same disabled cursor tweak as for inputs(添加disable样式)
 // Some special care is needed because <label>s don't inherit their parent's `cursor`.
 //
 // Note: Neither radios nor checkboxes can be readonly.
@@ -297,11 +283,10 @@ input[type="checkbox"] {
 }
 
 
-// Static form control text
+// Static form control text(静态表单控制文本)
 //
 // Apply class to a `p` element to make any string of text align with labels in
 // a horizontal form layout.
-
 .form-control-static {
   // Size it appropriately next to real form controls
   padding-top: (@padding-base-vertical + 1);
@@ -317,15 +302,13 @@ input[type="checkbox"] {
   }
 }
 
-
-// Form control sizing
+// Form control sizing(表单控件大小)
 //
 // Build on `.form-control` with modifier classes to decrease or increase the
 // height and font-size of form controls.
 //
 // The `.form-group-* form-control` variations are sadly duplicated to avoid the
 // issue documented in https://github.com/twbs/bootstrap/issues/15074.
-
 .input-sm {
   .input-size(@input-height-small; @padding-small-vertical; @padding-small-horizontal; @font-size-small; @line-height-small; @input-border-radius-small);
 }
@@ -383,10 +366,9 @@ input[type="checkbox"] {
 }
 
 
-// Form control feedback states
+// Form control feedback states(验证状态)
 //
 // Apply contextual and semantic states to individual form controls.
-
 .has-feedback {
   // Enable absolute positioning
   position: relative;
@@ -446,12 +428,10 @@ input[type="checkbox"] {
   }
 }
 
-
-// Help text
+// Help text(提示信息)
 //
 // Apply to any element you wish to create light text for placement immediately
 // below a form control. Use for general help, formatting, or instructional text.
-
 .help-block {
   display: block; // account for any element using help-block
   margin-top: 5px;
@@ -460,7 +440,7 @@ input[type="checkbox"] {
 }
 
 
-// Inline forms
+// Inline forms(内联表单)
 //
 // Make forms appear inline(-block) by adding the `.form-inline` class. Inline
 // forms begin stacked on extra small (mobile) devices and then go inline when
@@ -470,7 +450,6 @@ input[type="checkbox"] {
 // default HTML form controls and our custom form controls (e.g., input groups).
 //
 // Heads up! This is mixin-ed into `.navbar-form` in navbars.less.
-
 .form-inline {
 
   // Kick in the inline
@@ -542,11 +521,10 @@ input[type="checkbox"] {
 }
 
 
-// Horizontal forms
+// Horizontal forms(水平表单)
 //
 // Horizontal forms are built on grid classes and allow you to create forms with
 // labels on the left and inputs on the right.
-
 .form-horizontal {
 
   // Consistent vertical alignment of radios and checkboxes

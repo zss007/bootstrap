@@ -1,11 +1,9 @@
 //
-// Buttons
+// Buttons(按钮)
 // --------------------------------------------------
-
 
 // Base styles
 // --------------------------------------------------
-
 .btn {
   display: inline-block;
   margin-bottom: 0; // For input.btn
@@ -59,10 +57,8 @@
   }
 }
 
-
 // Alternate buttons
 // --------------------------------------------------
-
 .btn-default {
   .button-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
 }
@@ -86,10 +82,8 @@
   .button-variant(@btn-danger-color; @btn-danger-bg; @btn-danger-border);
 }
 
-
 // Link buttons
 // -------------------------
-
 // Make a button look and behave like a link
 .btn-link {
   color: @link-color;
@@ -126,10 +120,8 @@
   }
 }
 
-
 // Button Sizes
 // --------------------------------------------------
-
 .btn-lg {
   // line-height: ensure even-numbered height of button next to large input
   .button-size(@padding-large-vertical; @padding-large-horizontal; @font-size-large; @line-height-large; @btn-border-radius-large);
@@ -142,10 +134,8 @@
   .button-size(@padding-xs-vertical; @padding-xs-horizontal; @font-size-small; @line-height-small; @btn-border-radius-small);
 }
 
-
 // Block button
 // --------------------------------------------------
-
 .btn-block {
   display: block;
   width: 100%;
