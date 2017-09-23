@@ -17,7 +17,7 @@ th {
 }
 
 
-// Baseline styles
+// Baseline styles(基础表格)
 
 .table {
   width: 100%;
@@ -53,7 +53,7 @@ th {
       }
     }
   }
-  // Account for multiple tbody instances
+  // Account for multiple tbody instances(+: 相邻选择符)
   > tbody + tbody {
     border-top: 2px solid @table-border-color;
   }
@@ -65,7 +65,7 @@ th {
 }
 
 
-// Condensed table w/ half padding
+// Condensed table w/ half padding(紧凑型表格)
 
 .table-condensed {
   > thead,
@@ -81,7 +81,7 @@ th {
 }
 
 
-// Bordered version
+// Bordered version(带边框表格)
 //
 // Add borders all around the table and between all the columns.
 
@@ -106,7 +106,7 @@ th {
 }
 
 
-// Zebra-striping
+// Zebra-striping(斑马线表格)
 //
 // Default zebra-stripe styles (alternating gray and transparent backgrounds)
 
@@ -117,7 +117,7 @@ th {
 }
 
 
-// Hover effect
+// Hover effect(鼠标悬浮高亮的表格)
 //
 // Placed here since it has to come after the potential zebra striping
 
@@ -130,7 +130,7 @@ th {
 
 // Table cell sizing
 //
-// Reset default table behavior
+// Reset default table behavior('class*=': 选择所有类名中含有'col-'的元素; ^=: 表示开头; $=: 表示结尾)
 
 table col[class*="col-"] {
   position: static; // Prevent border hiding in Firefox and IE9-11 (see https://github.com/twbs/bootstrap/issues/11623)
@@ -167,7 +167,7 @@ table {
 .table-row-variant(danger; @state-danger-bg);
 
 
-// Responsive tables
+// Responsive tables(响应式表格)
 //
 // Wrap your tables in `.table-responsive` and we'll make them mobile friendly
 // by enabling horizontal scrolling. Only applies <768px. Everything above that

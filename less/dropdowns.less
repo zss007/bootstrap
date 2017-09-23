@@ -2,8 +2,7 @@
 // Dropdown menus(下拉菜单)
 // --------------------------------------------------
 
-
-// Dropdown arrow/caret
+// Dropdown arrow/caret(下拉菜单箭头)
 .caret {
   display: inline-block;
   width: 0;
@@ -16,7 +15,7 @@
   border-left:  @caret-width-base solid transparent;
 }
 
-// The dropdown wrapper (div)
+// The dropdown wrapper (div: 下拉菜单容器)
 .dropup,
 .dropdown {
   position: relative;
@@ -27,7 +26,7 @@
   outline: 0;
 }
 
-// The dropdown menu (ul)
+// The dropdown menu (ul: 下拉菜单)
 .dropdown-menu {
   position: absolute;
   top: 100%;
@@ -48,7 +47,7 @@
   .box-shadow(0 6px 12px rgba(0,0,0,.175));
   background-clip: padding-box;
 
-  // Aligns the dropdown menu to right
+  // Aligns the dropdown menu to right(下拉菜单右对齐)
   //
   // Deprecated as of 3.1.0 in favor of `.dropdown-menu-[dir]`
   &.pull-right {
@@ -56,12 +55,12 @@
     left: auto;
   }
 
-  // Dividers (basically an hr) within the dropdown
+  // Dividers (basically an hr) within the dropdown(下拉分割线)
   .divider {
     .nav-divider(@dropdown-divider-bg);
   }
 
-  // Links within the dropdown menu
+  // Links within the dropdown menu(下拉菜单链接)
   > li > a {
     display: block;
     padding: 3px 20px;
@@ -73,7 +72,7 @@
   }
 }
 
-// Hover/Focus state
+// Hover/Focus state(菜单项状态: 悬浮状态、焦点状态)
 .dropdown-menu > li > a {
   &:hover,
   &:focus {
@@ -83,7 +82,7 @@
   }
 }
 
-// Active state
+// Active state(当前状态)
 .dropdown-menu > .active > a {
   &,
   &:hover,
@@ -95,10 +94,9 @@
   }
 }
 
-// Disabled state
+// Disabled state(禁用状态)
 //
 // Gray out text and ensure the hover/focus state remains gray
-
 .dropdown-menu > .disabled > a {
   &,
   &:hover,
@@ -117,7 +115,7 @@
   }
 }
 
-// Open state for the dropdown
+// Open state for the dropdown(展开下拉菜单)
 .open {
   // Show the menu
   > .dropdown-menu {
@@ -130,10 +128,10 @@
   }
 }
 
-// Menu positioning
+// Menu positioning(下拉菜单对齐方式)
 //
 // Add extra class to `.dropdown-menu` to flip the alignment of the dropdown
-// menu with the parent.
+// menu with the parent.(右对齐)
 .dropdown-menu-right {
   left: auto; // Reset the default from `.dropdown-menu`
   right: 0;
@@ -143,13 +141,13 @@
 // to restore the default dropdown menu alignment.
 //
 // This is only for left-aligning a dropdown menu within a `.navbar-right` or
-// `.pull-right` nav component.
+// `.pull-right` nav component.(左对齐)
 .dropdown-menu-left {
   left: 0;
   right: auto;
 }
 
-// Dropdown section headers
+// Dropdown section headers(下拉菜单标题)
 .dropdown-header {
   display: block;
   padding: 3px 20px;
@@ -159,7 +157,7 @@
   white-space: nowrap; // as with > li > a
 }
 
-// Backdrop to catch body clicks on mobile, etc.
+// Backdrop to catch body clicks on mobile, etc.(背景遮罩层)
 .dropdown-backdrop {
   position: fixed;
   left: 0;
@@ -169,7 +167,7 @@
   z-index: (@zindex-dropdown - 10);
 }
 
-// Right aligned dropdowns
+// Right aligned dropdowns(右对齐下拉菜单)
 .pull-right > .dropdown-menu {
   right: 0;
   left: auto;

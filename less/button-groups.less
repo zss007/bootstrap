@@ -1,8 +1,8 @@
 //
-// Button groups
+// Button groups(按钮组)
 // --------------------------------------------------
 
-// Make the div behave like a button
+// Make the div behave like a button(按钮组)
 .btn-group,
 .btn-group-vertical {
   position: relative;
@@ -21,7 +21,7 @@
   }
 }
 
-// Prevent double borders when buttons are next to each other
+// Prevent double borders when buttons are next to each other(去除按钮组间的边框)
 .btn-group {
   .btn + .btn,
   .btn + .btn-group,
@@ -31,7 +31,7 @@
   }
 }
 
-// Optional: Group multiple button groups together for a toolbar
+// Optional: Group multiple button groups together for a toolbar(工具栏，按钮分组的父容器)
 .btn-toolbar {
   margin-left: -5px; // Offset the first child's margin
   &:extend(.clearfix all);
@@ -48,10 +48,10 @@
   }
 }
 
+// 去除圆角，生成按钮组圆角效果
 .btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
   border-radius: 0;
 }
-
 // Set corners individual because sometimes a single button can be in a .btn-group and we need :first-child and :last-child to both match
 .btn-group > .btn:first-child {
   margin-left: 0;
@@ -89,18 +89,16 @@
 }
 
 
-// Sizing
+// Sizing(按钮组大小设置)
 //
 // Remix the default button sizing classes into new ones for easier manipulation.
-
 .btn-group-xs > .btn { &:extend(.btn-xs); }
 .btn-group-sm > .btn { &:extend(.btn-sm); }
 .btn-group-lg > .btn { &:extend(.btn-lg); }
 
 
-// Split button dropdowns
+// Split button dropdowns(嵌套分组)
 // ----------------------
-
 // Give the line between buttons some depth
 .btn-group > .btn + .dropdown-toggle {
   padding-left: 8px;
@@ -138,9 +136,8 @@
 }
 
 
-// Vertical button groups
+// Vertical button groups(垂直按钮组)
 // ----------------------
-
 .btn-group-vertical {
   > .btn,
   > .btn-group,
@@ -167,7 +164,6 @@
     margin-left: 0;
   }
 }
-
 .btn-group-vertical > .btn {
   &:not(:first-child):not(:last-child) {
     border-radius: 0;
@@ -195,9 +191,8 @@
 }
 
 
-// Justified button groups
+// Justified button groups(等分按钮)
 // ----------------------
-
 .btn-group-justified {
   display: table;
   width: 100%;
@@ -230,7 +225,6 @@
 //
 // See https://github.com/twbs/bootstrap/pull/12794 and
 // https://github.com/twbs/bootstrap/pull/14559 for more information.
-
 [data-toggle="buttons"] {
   > .btn,
   > .btn-group > .btn {

@@ -1,8 +1,8 @@
-// Framework grid generation
+// Framework grid generation(网格框架生成)
 //
+// 生成xs、sm、md、lg几种col布局样式
 // Used only by Bootstrap to generate the correct number of grid classes given
 // any value of `@grid-columns`.
-
 .make-grid-columns() {
   // Common styles for all sizes of grid columns, widths 1-12
   .col(@index) { // initial
@@ -26,6 +26,7 @@
   .col(1); // kickstart it
 }
 
+// 浮动网格列
 .float-grid-columns(@class) {
   .col(@index) { // initial
     @item: ~".col-@{class}-@{index}";
@@ -74,18 +75,21 @@
   }
 }
 
-// Basic looping in LESS
+// Basic looping in LESS(循环)
 .loop-grid-columns(@index, @class, @type) when (@index >= 0) {
   .calc-grid-column(@index, @class, @type);
   // next iteration
   .loop-grid-columns((@index - 1), @class, @type);
 }
 
-// Create grid for specific class
+// Create grid for specific class(创建特定样式的网格系统)
 .make-grid(@class) {
   .float-grid-columns(@class);
+  // 生成每列宽度百分比
   .loop-grid-columns(@grid-columns, @class, width);
+  // 列排序
   .loop-grid-columns(@grid-columns, @class, pull);
   .loop-grid-columns(@grid-columns, @class, push);
+  // 生成列偏移量
   .loop-grid-columns(@grid-columns, @class, offset);
 }

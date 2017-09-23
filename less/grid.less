@@ -1,12 +1,11 @@
 //
-// Grid system
+// Grid system(网格系统)
 // --------------------------------------------------
 
 
-// Container widths
+// Container widths(容器宽度)
 //
 // Set the container width, and override it for fixed navbars in media queries.
-
 .container {
   .container-fixed();
 
@@ -26,59 +25,52 @@
 //
 // Utilizes the mixin meant for fixed width containers, but without any defined
 // width for fluid, full width layouts.
-
 .container-fluid {
   .container-fixed();
 }
 
 
-// Row
+// Row(行容器)
 //
 // Rows contain and clear the floats of your columns.
-
 .row {
   .make-row();
 }
 
 
-// Columns
+// Columns(网格列)
 //
 // Common styles for small and large grid columns
-
 .make-grid-columns();
 
 
-// Extra small grid
+// Extra small grid(生成超小网格)
 //
 // Columns, offsets, pushes, and pulls for extra small devices like
 // smartphones.
-
 .make-grid(xs);
 
 
-// Small grid
+// Small grid(生成小网格)
 //
 // Columns, offsets, pushes, and pulls for the small device range, from phones
 // to tablets.
-
 @media (min-width: @screen-sm-min) {
   .make-grid(sm);
 }
 
 
-// Medium grid
+// Medium grid(生成中等网格)
 //
 // Columns, offsets, pushes, and pulls for the desktop device range.
-
 @media (min-width: @screen-md-min) {
   .make-grid(md);
 }
 
 
-// Large grid
+// Large grid(生成大网格)
 //
 // Columns, offsets, pushes, and pulls for the large desktop device range.
-
 @media (min-width: @screen-lg-min) {
   .make-grid(lg);
 }

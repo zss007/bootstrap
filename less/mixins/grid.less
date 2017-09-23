@@ -1,8 +1,8 @@
-// Grid system
+// Grid system(网格)
 //
-// Generate semantic grid columns with these mixins.
+// Generate semantic(语义) grid columns with these mixins.
 
-// Centered container element
+// Centered container element(生成容器样式)
 .container-fixed(@gutter: @grid-gutter-width) {
   margin-right: auto;
   margin-left: auto;
@@ -11,7 +11,7 @@
   &:extend(.clearfix all);
 }
 
-// Creates a wrapper for a series of columns
+// Creates a wrapper for a series of columns(生成行容器row样式)
 .make-row(@gutter: @grid-gutter-width) {
   margin-left:  ceil((@gutter / -2));
   margin-right: floor((@gutter / -2));
