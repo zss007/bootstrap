@@ -2,8 +2,7 @@
 // Panels
 // --------------------------------------------------
 
-
-// Base class
+// Base class(基础面板)
 .panel {
   margin-bottom: @line-height-computed;
   background-color: @panel-bg;
@@ -18,7 +17,7 @@
   &:extend(.clearfix all);
 }
 
-// Optional heading
+// Optional heading(可选面板头部)
 .panel-heading {
   padding: @panel-heading-padding;
   border-bottom: 1px solid transparent;
@@ -29,7 +28,7 @@
   }
 }
 
-// Within heading, strip any `h*` tag of its default margins for spacing.
+// Within heading, strip any `h*` tag of its default margins for spacing.(面板标题)
 .panel-title {
   margin-top: 0;
   margin-bottom: 0;
@@ -45,7 +44,7 @@
   }
 }
 
-// Optional footer (stays gray in every modifier class)
+// Optional footer (stays gray in every modifier class)(可选面板尾部)
 .panel-footer {
   padding: @panel-footer-padding;
   background-color: @panel-footer-bg;
@@ -53,12 +52,10 @@
   .border-bottom-radius((@panel-border-radius - 1));
 }
 
-
-// List groups in panels
+// List groups in panels(面板中嵌套列表组)
 //
 // By default, space out list group content from panel headings to account for
 // any kind of custom content between the two.
-
 .panel {
   > .list-group,
   > .panel-collapse > .list-group {
@@ -101,11 +98,10 @@
   border-top-width: 0;
 }
 
-// Tables in panels
+// Tables in panels(面板中嵌套表格)
 //
 // Place a non-bordered `.table` within a panel (not within a `.panel-body`) and
 // watch it go full width.
-
 .panel {
   > .table,
   > .table-responsive > .table,
@@ -214,11 +210,10 @@
 }
 
 
-// Collapsible panels (aka, accordion)
+// Collapsible panels (aka, accordion)(面板组)
 //
 // Wrap a series of panels in `.panel-group` to turn them into an accordion with
 // the help of our collapse JavaScript plugin.
-
 .panel-group {
   margin-bottom: @line-height-computed;
 
@@ -250,7 +245,7 @@
 }
 
 
-// Contextual variations
+// Contextual variations(彩色面板)
 .panel-default {
   .panel-variant(@panel-default-border; @panel-default-text; @panel-default-heading-bg; @panel-default-border);
 }

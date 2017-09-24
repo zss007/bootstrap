@@ -1,11 +1,9 @@
 //
-// Alerts
+// Alerts(警示框)
 // --------------------------------------------------
-
 
 // Base styles
 // -------------------------
-
 .alert {
   padding: @alert-padding;
   margin-bottom: @line-height-computed;
@@ -19,7 +17,7 @@
     color: inherit;
   }
 
-  // Provide class for links that match alerts
+  // Provide class for links that match alerts(警示框的链接)
   .alert-link {
     font-weight: @alert-link-font-weight;
   }
@@ -35,10 +33,9 @@
   }
 }
 
-// Dismissible alerts
+// Dismissible alerts(可关闭的警示框)
 //
 // Expand the right padding and account for the close button's positioning.
-
 .alert-dismissable, // The misspelled .alert-dismissable was deprecated in 3.2.0.
 .alert-dismissible {
   padding-right: (@alert-padding + 20);
@@ -52,10 +49,9 @@
   }
 }
 
-// Alternate styles
+// Alternate styles(警示框风格)
 //
 // Generate contextual modifier classes for colorizing the alert.
-
 .alert-success {
   .alert-variant(@alert-success-bg; @alert-success-border; @alert-success-text);
 }

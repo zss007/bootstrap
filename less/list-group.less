@@ -1,12 +1,11 @@
 //
-// List groups
+// List groups(列表组)
 // --------------------------------------------------
 
 
-// Base class
+// Base class(基础列表样式)
 //
 // Easily usable on <ul>, <ol>, or <div>.
-
 .list-group {
   // No need to set list-style: none; since .list-group-item is block level
   margin-bottom: 20px;
@@ -14,10 +13,9 @@
 }
 
 
-// Individual list items
+// Individual list items(基础列表项)
 //
 // Use on `li`s or `div`s within the `.list-group` parent.
-
 .list-group-item {
   position: relative;
   display: block;
@@ -42,7 +40,7 @@
 //
 // Use anchor or button elements instead of `li`s or `div`s to create interactive items.
 // Includes an extra `.active` modifier class for showing selected items.
-
+// 带链接的列表组
 a.list-group-item,
 button.list-group-item {
   color: @list-group-link-color;
@@ -65,6 +63,7 @@ button.list-group-item {
   text-align: left;
 }
 
+// 列表项的状态设置
 .list-group-item {
   // Disabled state
   &.disabled,
@@ -105,21 +104,19 @@ button.list-group-item {
 }
 
 
-// Contextual variants
+// Contextual variants(多彩列表组)
 //
 // Add modifier classes to change text and background color on individual items.
 // Organizationally, this must come after the `:hover` states.
-
 .list-group-item-variant(success; @state-success-bg; @state-success-text);
 .list-group-item-variant(info; @state-info-bg; @state-info-text);
 .list-group-item-variant(warning; @state-warning-bg; @state-warning-text);
 .list-group-item-variant(danger; @state-danger-bg; @state-danger-text);
 
 
-// Custom content options
+// Custom content options(自定义列表组)
 //
 // Extra classes for creating well-formatted content within `.list-group-item`s.
-
 .list-group-item-heading {
   margin-top: 0;
   margin-bottom: 5px;
