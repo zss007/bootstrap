@@ -8,32 +8,50 @@
   <script type="text/javascript" src="./dist/js/bootstrap.js"></script>
 </head>
 <body>
-<div class="media">
-  <a class="pull-left" href="#">
-    <img class="media-object" src="http://a.disquscdn.com/uploads/users/3740/2069/avatar92.jpg?1406972031" alt="...">
-  </a>
-  <div class="media-body">
-    <h4 class="media-heading">我是大漠</h4>
-    <div>我是W3cplus站长大漠，我在写Bootstrap框中的媒体对象测试用例</div>
-    <div class="media">
-      <a class="pull-left" href="#">
-        <img class="media-object" src="http://tp2.sinaimg.cn/3306361973/50/22875318196/0" alt="...">
-      </a>
-      <div class="media-body">
-        <h4 class="media-heading">慕课网</h4>
-        <div>大漠写的《玩转Bootstrap》系列教程即将会在慕课网上发布</div>
-        <div class="media">
-          <a class="pull-left" href="#">
-            <img class="media-object" src="http://tp4.sinaimg.cn/1167075935/50/22838101204/1" alt="...">
-          </a>
-          <div class="media-body">
-            <h4 class="media-heading">W3cplus</h4>
-            <div>W3cplus站上还有很多教程....</div>
-          </div>
-        </div>
+<h3>大/小尺寸模态弹出框</h3>
+<!-- Large modal -->
+<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">
+  大的模态弹出窗
+</button>
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">模态弹出窗标题</h4>
+      </div>
+      <div class="modal-body">
+        <p>模态弹出窗主体内容</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">保存</button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Small modal -->
+<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">
+  小的模态弹出窗
+</button>
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">模态弹出窗标题</h4>
+      </div>
+      <div class="modal-body">
+        <p>模态弹出窗主体内容</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

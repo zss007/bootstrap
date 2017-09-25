@@ -1,5 +1,5 @@
 //
-// Modals
+// Modals(静态弹出框)
 // --------------------------------------------------
 
 // .modal-open      - body class for killing the scroll
@@ -7,12 +7,12 @@
 // .modal-dialog    - positioning shell for the actual modal
 // .modal-content   - actual modal w/ bg and corners and shit
 
-// Kill the scroll on the body
+// Kill the scroll on the body(让body不发生滚动)
 .modal-open {
   overflow: hidden;
 }
 
-// Container that the modal scrolls within
+// Container that the modal scrolls within(容器)
 .modal {
   display: none;
   overflow: hidden;
@@ -28,7 +28,7 @@
   // https://github.com/twbs/bootstrap/pull/10951.
   outline: 0;
 
-  // When fading in the modal, animate it to slide down
+  // When fading in the modal, animate it to slide down(模态框动态效果)
   &.fade .modal-dialog {
     .translate(0, -25%);
     .transition-transform(~"0.3s ease-out");
@@ -40,14 +40,14 @@
   overflow-y: auto;
 }
 
-// Shell div to position the modal with bottom padding
+// Shell div to position the modal with bottom padding(模态对话框,水平居中)
 .modal-dialog {
   position: relative;
   width: auto;
   margin: 10px;
 }
 
-// Actual modal
+// Actual modal(模态框主体容器)
 .modal-content {
   position: relative;
   background-color: @modal-content-bg;
@@ -60,7 +60,7 @@
   outline: 0;
 }
 
-// Modal background
+// Modal background(模态框遮罩层)
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -69,37 +69,36 @@
   left: 0;
   z-index: @zindex-modal-background;
   background-color: @modal-backdrop-bg;
-  // Fade for backdrop
+  // Fade for backdrop(遮罩层动画效果)
   &.fade { .opacity(0); }
   &.in { .opacity(@modal-backdrop-opacity); }
 }
 
-// Modal header
+// Modal header(弹出框头部)
 // Top section of the modal w/ title and dismiss
 .modal-header {
   padding: @modal-title-padding;
   border-bottom: 1px solid @modal-header-border-color;
   &:extend(.clearfix all);
 }
-// Close icon
+// Close icon(弹出框头部关闭图标)
 .modal-header .close {
   margin-top: -2px;
 }
-
-// Title text within header
+// Title text within header(弹出框头部标题)
 .modal-title {
   margin: 0;
   line-height: @modal-title-line-height;
 }
 
-// Modal body
+// Modal body(弹窗框主体)
 // Where all modal content resides (sibling of .modal-header and .modal-footer)
 .modal-body {
   position: relative;
   padding: @modal-inner-padding;
 }
 
-// Footer (for actions)
+// Footer (for actions)(弹出框脚部)
 .modal-footer {
   padding: @modal-inner-padding;
   text-align: right; // right align buttons
@@ -130,7 +129,7 @@
   overflow: scroll;
 }
 
-// Scale up the modal
+// Scale up the modal(响应式模态框大小)
 @media (min-width: @screen-sm-min) {
   // Automatically set modal's width for larger viewports
   .modal-dialog {
@@ -144,7 +143,6 @@
   // Modal sizes
   .modal-sm { width: @modal-sm; }
 }
-
 @media (min-width: @screen-md-min) {
   .modal-lg { width: @modal-lg; }
 }
