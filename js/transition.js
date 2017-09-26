@@ -12,7 +12,7 @@
 
   // CSS TRANSITION SUPPORT (Shoutout: http://www.modernizr.com/)
   // ============================================================
-
+  // 判断浏览器是否支持哪种transitionEnd，如果不支持则返回false
   function transitionEnd() {
     var el = document.createElement('bootstrap')
 
@@ -37,11 +37,13 @@
     var called = false
     var $el = this
     $(this).one('bsTransitionEnd', function () { called = true })
+    // 如果监听到了bsTransitionEnd，那么采用定时器执行回调函数
     var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
     setTimeout(callback, duration)
     return this
   }
 
+  // 初始化
   $(function () {
     $.support.transition = transitionEnd()
 
@@ -55,5 +57,4 @@
       }
     }
   })
-
 }(jQuery);

@@ -54,8 +54,8 @@ if (typeof jQuery === 'undefined') {
   $.fn.emulateTransitionEnd = function (duration) {
     var called = false
     var $el = this
-    $(this).one('bsTransitionEnd', function () { called = true })
-    var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
+    $(this).one('bsTransitionEnd', function () { called = true ;console.log('bsTransitionEnd')})
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) ;console.log('timeout', called)}
     setTimeout(callback, duration)
     return this
   }
