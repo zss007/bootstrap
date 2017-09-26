@@ -37,7 +37,7 @@
     var called = false
     var $el = this
     $(this).one('bsTransitionEnd', function () { called = true })
-    // 如果监听到了bsTransitionEnd，那么采用定时器执行回调函数
+    // 如果监听到了bsTransitionEnd，那么采用定时器触发事件
     var callback = function () { if (!called) $($el).trigger($.support.transition.end) }
     setTimeout(callback, duration)
     return this
@@ -49,6 +49,7 @@
 
     if (!$.support.transition) return
 
+    // 用于传入事件类型，来自定义事件。这样就能自己添加事件$el.one('bsTransitionEnd', function() {})，而不用$el.one($.support.transition.end, function() {})
     $.event.special.bsTransitionEnd = {
       bindType: $.support.transition.end,
       delegateType: $.support.transition.end,
