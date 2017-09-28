@@ -7,62 +7,10 @@
   <script type="text/javascript" src="./dist/js/jquery.min.js"></script>
   <script type="text/javascript" src="./dist/js/bootstrap.js"></script>
 </head>
-<body style="border: 1px red solid;height: 1500px;width: 900px;">
-<h3 style="word-break: break-all">ModifycheckforscrollbartoaccountforIE10ModifycheckforscrollbartoaccountforIE10</h3>
-<!-- Large modal -->
-<button class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">
-  大的模态弹出窗
-</button>
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-          class="sr-only">Close</span></button>
-        <h4 class="modal-title">模态弹出窗标题</h4>
-      </div>
-      <div class="modal-body">
-        <p>模态弹出窗主体内容</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary">保存</button>
-      </div>
-    </div>
-  </div>
+<body>
+<div class="alert alert-success" role="alert">
+  <button class="close" data-dismiss="alert" type="button">&times;</button>
+  <p>恭喜您操作成功！</p>
 </div>
-
-<!-- Small modal -->
-<button class="btn btn-primary" id="myBtn" data-target=".bs-example-modal-sm">
-  小的模态弹出窗
-</button>
-<div class="modal fade bs-example-modal-sm" id="myModel" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-          class="sr-only">Close</span></button>
-        <h4 class="modal-title">模态弹出窗标题</h4>
-      </div>
-      <div class="modal-body">
-        <p>模态弹出窗主体内容</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-        <button type="button" class="btn btn-primary">保存</button>
-      </div>
-    </div>
-  </div>
-</div>
-<script>
-  $('#myBtn').click(function () {
-    var myModel = $("#myModel").modal({
-      keyboard: false,
-      backdrop: 'static'
-    });
-  });
-</script>
 </body>
 </html>
