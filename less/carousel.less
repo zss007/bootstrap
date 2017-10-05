@@ -1,13 +1,13 @@
 //
-// Carousel
+// Carousel(图片轮播)
 // --------------------------------------------------
 
-
-// Wrapper for the slide container and indicators
+// Wrapper for the slide container and indicators(轮播图容器)
 .carousel {
   position: relative;
 }
 
+// 轮播图片播放区
 .carousel-inner {
   position: relative;
   overflow: hidden;
@@ -87,9 +87,8 @@
 
 }
 
-// Left/right controls for nav
+// Left/right controls for nav(轮播图片控制器)
 // ---------------------------
-
 .carousel-control {
   position: absolute;
   top: 0;
@@ -166,11 +165,10 @@
   }
 }
 
-// Optional indicator pips
+// Optional indicator pips(轮播图片计数器)
 //
 // Add an unordered list with the following class and add a list item for each
 // slide your carousel holds.
-
 .carousel-indicators {
   position: absolute;
   bottom: 10px;
@@ -212,7 +210,7 @@
   }
 }
 
-// Optional captions
+// Optional captions(图片对应标题和描述内容)
 // -----------------------------
 // Hidden by default for smaller viewports
 .carousel-caption {
@@ -232,10 +230,10 @@
 }
 
 
-// Scale up controls for tablets and up
+// Scale up controls for tablets and up(对于大屏设备放大一点控制器)
 @media screen and (min-width: @screen-sm-min) {
 
-  // Scale up the controls a smidge
+  // Scale up the controls a smidge(一点点)
   .carousel-control {
     .glyphicon-chevron-left,
     .glyphicon-chevron-right,

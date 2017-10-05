@@ -22,6 +22,7 @@
     loadingText: 'loading...'
   };
 
+  // 处理按钮状态
   Button.prototype.setState = function (state) {
     var d    = 'disabled';
     var $el  = this.$element;
@@ -30,6 +31,7 @@
 
     state += 'Text';
 
+    // 存储按钮初始值，为了以后重置
     if (data.resetText == null) $el.data('resetText', $el[val]());
 
     // push to event loop to allow forms to submit
@@ -46,6 +48,7 @@
     }, this), 0)
   };
 
+  // 处理单选、多选
   Button.prototype.toggle = function () {
     var changed = true;
     var $parent = this.$element.closest('[data-toggle="buttons"]');
@@ -57,6 +60,7 @@
         $parent.find('.active').removeClass('active');
         this.$element.addClass('active')
       } else if ($input.prop('type') == 'checkbox') {
+        // 处理checkbox默认被checked情况，这个时候再被选中只是改变下样式
         if (($input.prop('checked')) !== this.$element.hasClass('active')) changed = false;
         this.$element.toggleClass('active')
       }

@@ -52,8 +52,8 @@ if (typeof jQuery === 'undefined') {
   $.fn.emulateTransitionEnd = function (duration) {
     var called = false
     var $el = this
-    $(this).one('bsTransitionEnd', function () { called = true ;console.log('bsTransitionEnd')})
-    var callback = function () { if (!called) $($el).trigger($.support.transition.end) ;console.log('timeout', called)}
+    $(this).one('bsTransitionEnd', function () { called = true ;})
+    var callback = function () { if (!called) $($el).trigger($.support.transition.end) ;}
     setTimeout(callback, duration)
     return this
   }
@@ -292,8 +292,6 @@ if (typeof jQuery === 'undefined') {
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
-
-
 +function ($) {
   'use strict';
 
@@ -459,7 +457,6 @@ if (typeof jQuery === 'undefined') {
 
   // CAROUSEL PLUGIN DEFINITION
   // ==========================
-
   function Plugin(option) {
     return this.each(function () {
       var $this   = $(this)
@@ -482,7 +479,6 @@ if (typeof jQuery === 'undefined') {
 
   // CAROUSEL NO CONFLICT
   // ====================
-
   $.fn.carousel.noConflict = function () {
     $.fn.carousel = old
     return this
@@ -491,7 +487,6 @@ if (typeof jQuery === 'undefined') {
 
   // CAROUSEL DATA-API
   // =================
-
   var clickHandler = function (e) {
     var href
     var $this   = $(this)
@@ -532,7 +527,6 @@ if (typeof jQuery === 'undefined') {
  * ======================================================================== */
 
 /* jshint latedef: false */
-
 +function ($) {
   'use strict';
 
