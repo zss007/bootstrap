@@ -101,6 +101,7 @@
         .trigger($.Event('shown.bs.dropdown', relatedTarget))
     }
 
+    // 返回false，阻止冒泡和默认事件发生；如果是用JS直接触发，而且JS绑定的元素是document的子元素就可以避免绑定触发多次的问题，因为这里返回了false
     return false
   }
 

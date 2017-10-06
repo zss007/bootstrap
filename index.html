@@ -13,15 +13,13 @@
   <a href="##" class="navbar-brand">W3cplus</a>
   <ul class="nav navbar-nav">
     <li class="dropdown">
-      <form>
-        <a href="##" data-toggle="dropdown" class="dropdown-toggle" role="button" id="tutorial">教程<b
-          class="caret"></b></a>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="tutorial">
-          <li role="presentation"><a href="##">CSS3</a></li>
-          <li role="presentation"><a href="##">HTML5</a></li>
-          <li role="presentation"><a href="##">Sass</a></li>
-        </ul>
-      </form>
+      <a href="##" data-toggle="dropdown" class="dropdown-toggle" role="button" id="tutorial">教程<b
+        class="caret"></b></a>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="tutorial">
+        <li role="presentation"><a href="##">CSS3</a></li>
+        <li role="presentation"><a href="##">HTML5</a></li>
+        <li role="presentation"><a href="##">Sass</a></li>
+      </ul>
     </li>
     <li><a href="##">前端论坛</a></li>
     <li><a href="##">关于我们</a></li>
@@ -29,7 +27,7 @@
 </div>
 <script>
   $(function () {
-    $(".dropdown-toggle").dropdown();
+    $(".dropdown-toggle").dropdown('toggle');
   });
 </script>
 </body>
