@@ -115,7 +115,6 @@
 
   // AFFIX PLUGIN DEFINITION
   // =======================
-
   function Plugin(option) {
     return this.each(function () {
       var $this   = $(this)
@@ -135,7 +134,6 @@
 
   // AFFIX NO CONFLICT
   // =================
-
   $.fn.affix.noConflict = function () {
     $.fn.affix = old
     return this
@@ -144,7 +142,6 @@
 
   // AFFIX DATA-API
   // ==============
-
   $(window).on('load', function () {
     $('[data-spy="affix"]').each(function () {
       var $spy = $(this)

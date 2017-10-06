@@ -2,50 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>bootstrap测试</title>
   <link rel="stylesheet" href="./dist/css/bootstrap.css">
   <script type="text/javascript" src="./dist/js/jquery.min.js"></script>
   <script type="text/javascript" src="./dist/js/bootstrap.js"></script>
 </head>
 <body>
-<br/><br/><br/>
-<div id="slidershow" class="carousel slide" data-ride="carousel" data-interval="3000" data-wrap="true" data-pause="hover">
-  <ol class="carousel-indicators">
-    <li class="active" data-target="#slidershow" data-slide-to="0">1</li>
-    <li data-target="#slidershow" data-slide-to="1">2</li>
-    <li data-target="#slidershow" data-slide-to="2">3</li>
-  </ol>
-  <!-- 设置轮播图片 -->
-  <div class="carousel-inner">
-    <div class="item active">
-      <a href="##"><img src="http://images3.c-ctrip.com/rk/201407/ll580x145.jpg" alt=""></a>
-      <div class="carousel-caption">
-        <h3>图片标题1</h3>
-        <p>描述内容1...</p>
-      </div>
-    </div>
-    <div class="item">
-      <a href="##"><img src="http://images3.c-ctrip.com/dj/201408/zj/zj_580145.jpg" alt=""></a>
-      <div class="carousel-caption">
-        <h3>图片标题2</h3>
-        <p>描述内容2...</p>
-      </div>
-    </div>
-    <div class="item">
-      <a href="##"><img src="http://images3.c-ctrip.com/dj/201408/zqgq_580145.jpg" alt=""></a>
-      <div class="carousel-caption">
-        <h3>图片标题3</h3>
-        <p>描述内容3...</p>
-      </div>
-    </div>
-    <!-- 设置轮播图片控制器 -->
-    <a class="left carousel-control" href="#slidershow" role="button" data-slide="prev" >
-      <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#slidershow" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
-  </div>
+<div class="navbar navbar-default" id="navmenu">
+  <a href="##" class="navbar-brand">W3cplus</a>
+  <ul class="nav navbar-nav">
+    <li class="dropdown">
+      <form>
+        <a href="##" data-toggle="dropdown" class="dropdown-toggle" role="button" id="tutorial">教程<b
+          class="caret"></b></a>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="tutorial">
+          <li role="presentation"><a href="##">CSS3</a></li>
+          <li role="presentation"><a href="##">HTML5</a></li>
+          <li role="presentation"><a href="##">Sass</a></li>
+        </ul>
+      </form>
+    </li>
+    <li><a href="##">前端论坛</a></li>
+    <li><a href="##">关于我们</a></li>
+  </ul>
 </div>
+<script>
+  $(function () {
+    $(".dropdown-toggle").dropdown();
+  });
+</script>
 </body>
 </html>
