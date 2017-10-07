@@ -13,12 +13,12 @@
 
   // COLLAPSE PUBLIC CLASS DEFINITION
   // ================================
-
   var Collapse = function (element, options) {
     this.$element      = $(element)
     this.options       = $.extend({}, Collapse.DEFAULTS, options)
     this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
                            '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    // 变量：是否正在过渡动画中
     this.transitioning = null
 
     if (this.options.parent) {
@@ -38,17 +38,22 @@
     toggle: true
   }
 
+  // 高度还是宽度发生改变
   Collapse.prototype.dimension = function () {
     var hasWidth = this.$element.hasClass('width')
     return hasWidth ? 'width' : 'height'
   }
 
+  // 显示
   Collapse.prototype.show = function () {
+    // 如果正在动画过渡中，或者已经显示，那么直接返回不做任何处理
     if (this.transitioning || this.$element.hasClass('in')) return
 
     var activesData
+    // 展开或者正在展开的手风琴控制面板
     var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
 
+    // 如果手风琴控制面板正在过渡中，则不作任何处理(这里只考虑actives.length为1的处理，即控制面板只有单个展开的情况)
     if (actives && actives.length) {
       activesData = actives.data('bs.collapse')
       if (activesData && activesData.transitioning) return
@@ -59,17 +64,25 @@
     if (startEvent.isDefaultPrevented()) return
 
     if (actives && actives.length) {
+      // 将之前拓展开的控制面板隐藏起来
       Plugin.call(actives, 'hide')
+      // 存在一种情况：如果一开始有控制面板展开，这时候点击其他面板，展开的面板会被触发隐藏同时初始化bs.collapse对象('hide'参数)存储到
+      // data中，下次点击最开始展开的面板时，这时候会从data中读取bs.collapse作为对象而不是重新初始化，然后触发toggle，但是因为并没有将
+      // parent传到option中，所以后面点击的面板并不会收拢；这里做的处理是将所有已经展开的面板都隐藏，而且清除掉存在data的bs.collapse数
+      // 据，下次点击重新初始化
+      // 不过其实将对象存在data的bs.collapse属性中还是有必要的，如果多次点击同一面板触发器，可以避免多次初始化对象
       activesData || actives.data('bs.collapse', null)
     }
 
     var dimension = this.dimension()
 
+    // 目标元素移除collapse类，添加collapsing，设置height为0
     this.$element
       .removeClass('collapse')
       .addClass('collapsing')[dimension](0)
       .attr('aria-expanded', true)
 
+    // 触发元素移除collapsed类
     this.$trigger
       .removeClass('collapsed')
       .attr('aria-expanded', true)
@@ -77,6 +90,7 @@
     this.transitioning = 1
 
     var complete = function () {
+      // 目标元素移除collapsing类，添加.collapse .in类，并重置height
       this.$element
         .removeClass('collapsing')
         .addClass('collapse in')[dimension]('')
@@ -85,15 +99,18 @@
         .trigger('shown.bs.collapse')
     }
 
+    // 如果设备不支持动画，那么直接执行完成函数
     if (!$.support.transition) return complete.call(this)
 
     var scrollSize = $.camelCase(['scroll', dimension].join('-'))
 
+    // 设置函数动画结束监听函数，并设置height为目标元素的scrollHeight
     this.$element
       .one('bsTransitionEnd', $.proxy(complete, this))
       .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
   }
 
+  // 隐藏
   Collapse.prototype.hide = function () {
     if (this.transitioning || !this.$element.hasClass('in')) return
 
@@ -103,6 +120,7 @@
 
     var dimension = this.dimension()
 
+    // 强制回流，为页面重绘做准备
     this.$element[dimension](this.$element[dimension]())[0].offsetHeight
 
     this.$element
@@ -132,10 +150,12 @@
       .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
   }
 
+  // 切换手风琴显示隐藏
   Collapse.prototype.toggle = function () {
     this[this.$element.hasClass('in') ? 'hide' : 'show']()
   }
 
+  // 找到手风琴目标元素并为所有拓展面板执行addAriaAndCollapsedClass方法
   Collapse.prototype.getParent = function () {
     return $(this.options.parent)
       .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
@@ -146,6 +166,7 @@
       .end()
   }
 
+  // 添加无障碍阅读属性和collapsed类
   Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
     var isOpen = $element.hasClass('in')
 
@@ -155,6 +176,7 @@
       .attr('aria-expanded', isOpen)
   }
 
+  // 获取目标元素
   function getTargetFromTrigger($trigger) {
     var href
     var target = $trigger.attr('data-target')
@@ -163,16 +185,15 @@
     return $(target)
   }
 
-
   // COLLAPSE PLUGIN DEFINITION
   // ==========================
-
   function Plugin(option) {
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.collapse')
       var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
 
+      // 如果直接用JS触发手风琴，而且option为show/hide字符串，那么没有不调用toggle方法，而直接调用相应hide/show方法
       if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
       if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
       if (typeof option == 'string') data[option]()
@@ -187,7 +208,6 @@
 
   // COLLAPSE NO CONFLICT
   // ====================
-
   $.fn.collapse.noConflict = function () {
     $.fn.collapse = old
     return this
@@ -196,13 +216,13 @@
 
   // COLLAPSE DATA-API
   // =================
-
   $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
     var $this   = $(this)
 
     if (!$this.attr('data-target')) e.preventDefault()
 
     var $target = getTargetFromTrigger($this)
+    // 如果已经初始化了bs.collapse属性对应的对象，那么直接触发toggle方法(即除了第一次点击初始化之外)
     var data    = $target.data('bs.collapse')
     var option  = data ? 'toggle' : $this.data()
 

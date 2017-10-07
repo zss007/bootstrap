@@ -9,26 +9,31 @@
   <script type="text/javascript" src="./dist/js/bootstrap.js"></script>
 </head>
 <body>
-<div class="navbar navbar-default" id="navmenu">
-  <a href="##" class="navbar-brand">W3cplus</a>
-  <ul class="nav navbar-nav">
-    <li class="dropdown">
-      <a href="##" data-toggle="dropdown" class="dropdown-toggle" role="button" id="tutorial">教程<b
-        class="caret"></b></a>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="tutorial">
-        <li role="presentation"><a href="##">CSS3</a></li>
-        <li role="presentation"><a href="##">HTML5</a></li>
-        <li role="presentation"><a href="##">Sass</a></li>
-      </ul>
-    </li>
-    <li><a href="##">前端论坛</a></li>
-    <li><a href="##">关于我们</a></li>
-  </ul>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">标题一</a></h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">标题一对应的内容<br>标题一对应的内容2</div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">标题二</a></h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">标题二对应的内容</div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">标题三</a></h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">标题三对应的内容</div>
+    </div>
+  </div>
 </div>
-<script>
-  $(function () {
-    $(".dropdown-toggle").dropdown('toggle');
-  });
-</script>
 </body>
 </html>

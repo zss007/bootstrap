@@ -167,7 +167,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: button.js v3.3.7
+ * Bootstrap: button.js v3.3.7(按钮插件)
  * http://getbootstrap.com/javascript/#buttons
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
@@ -286,7 +286,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: carousel.js v3.3.7
+ * Bootstrap: carousel.js v3.3.7(轮播图插件)
  * http://getbootstrap.com/javascript/#carousel
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
@@ -519,13 +519,12 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: collapse.js v3.3.7
+ * Bootstrap: collapse.js v3.3.7(手风琴插件)
  * http://getbootstrap.com/javascript/#collapse
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
-
 /* jshint latedef: false */
 +function ($) {
   'use strict';
@@ -685,7 +684,6 @@ if (typeof jQuery === 'undefined') {
 
   // COLLAPSE PLUGIN DEFINITION
   // ==========================
-
   function Plugin(option) {
     return this.each(function () {
       var $this   = $(this)
@@ -706,7 +704,6 @@ if (typeof jQuery === 'undefined') {
 
   // COLLAPSE NO CONFLICT
   // ====================
-
   $.fn.collapse.noConflict = function () {
     $.fn.collapse = old
     return this
@@ -715,7 +712,6 @@ if (typeof jQuery === 'undefined') {
 
   // COLLAPSE DATA-API
   // =================
-
   $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
     var $this   = $(this)
 
@@ -731,7 +727,7 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: dropdown.js v3.3.7
+ * Bootstrap: dropdown.js v3.3.7(下拉菜单插件)
  * http://getbootstrap.com/javascript/#dropdowns
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
@@ -893,14 +889,12 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: modal.js v3.3.7
+ * Bootstrap: modal.js v3.3.7(模态弹窗插件)
  * http://getbootstrap.com/javascript/#modals
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
-
-
 +function ($) {
   'use strict';
 
