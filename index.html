@@ -9,31 +9,69 @@
   <script type="text/javascript" src="./dist/js/bootstrap.js"></script>
 </head>
 <body>
-<div class="panel-group" id="accordion">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">标题一</a></h4>
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in">
-      <div class="panel-body">标题一对应的内容<br>标题一对应的内容2</div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">标题二</a></h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse">
-      <div class="panel-body">标题二对应的内容</div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">标题三</a></h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse">
-      <div class="panel-body">标题三对应的内容</div>
-    </div>
-  </div>
-</div>
+<h3>按钮做的提示框</h3>
+<button type="button"
+        class="btn btn-default"
+        data-toggle="tooltip"
+        data-placement="top"
+        data-original-title="提示框在顶部">提示框在顶部
+</button>
+<button type="button"
+        class="btn btn-default"
+        data-toggle="tooltip"
+        data-placement="left"
+        data-original-title="提示框居左"
+        title="">提示框居左
+</button>
+<button type="button"
+        class="btn btn-default"
+        data-toggle="tooltip"
+        data-placement="bottom"
+        data-original-title="提示框在底部">提示框在底部
+</button>
+<button type="button"
+        class="btn btn-default"
+        data-toggle="tooltip"
+        data-placement="right"
+        data-original-title="提示框居右">提示框居右
+</button>
+<h3>链接制作的提示框</h3>
+<a class="btn btn-primary"
+   data-toggle="tooltip"
+   data-placement="top"
+   data-original-title="提示框在顶部2333"
+   title="提示框在顶部">提示框在顶部</a>
+<a class="btn btn-primary"
+   data-toggle="tooltip"
+   data-placement="left"
+   title="提示框居左">提示框居左</a>
+<a class="btn btn-primary"
+   data-toggle="tooltip"
+   data-placement="bottom"
+   title="提示框在底部">提示框在底部</a>
+<a class="btn btn-primary"
+   data-toggle="tooltip"
+   data-placement="right"
+   title="提示框在居右">提示框居右</a>
+<a href="##"
+   class="btn btn-primary"
+   id="myTooltip">我是提示框</a>
+<a href="##"
+   class="btn btn-primary"
+   id="myTooltip2">我是提示框2</a>
+<script>
+  $(function () {
+    $(document).tooltip({
+      delay: 500,
+      trigger: 'hover click',
+      selector: '[data-toggle="tooltip"]'
+    });
+    $('#myTooltip').tooltip({
+      title: "我是一个提示框，我在顶部出现",
+      placement: 'top'
+    });
+  });
+</script>
+
 </body>
 </html>

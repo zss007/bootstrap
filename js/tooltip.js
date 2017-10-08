@@ -6,14 +6,11 @@
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
-
-
 +function ($) {
   'use strict';
 
   // TOOLTIP PUBLIC CLASS DEFINITION
   // ===============================
-
   var Tooltip = function (element, options) {
     this.type       = null
     this.options    = null
@@ -46,29 +43,36 @@
     }
   }
 
+  // 提示框初始化
   Tooltip.prototype.init = function (type, element, options) {
     this.enabled   = true
     this.type      = type
     this.$element  = $(element)
+    // 获取自定义选项
     this.options   = this.getOptions(options)
+    // 获取视口，保证提示框在元素的边缘内
     this.$viewport = this.options.viewport && $($.isFunction(this.options.viewport) ? this.options.viewport.call(this, this.$element) : (this.options.viewport.selector || this.options.viewport))
+    // 显示条件存储对象
     this.inState   = { click: false, hover: false, focus: false }
 
+    // 不能直接为document添加提示框，需要添加CSS选择符来选中document的子元素
     if (this.$element[0] instanceof document.constructor && !this.options.selector) {
       throw new Error('`selector` option must be specified when initializing ' + this.type + ' on the window.document object!')
     }
 
+    // 处理不同触发情况
     var triggers = this.options.trigger.split(' ')
-
     for (var i = triggers.length; i--;) {
       var trigger = triggers[i]
 
       if (trigger == 'click') {
+        // 点击触发调用toggle方法
         this.$element.on('click.' + this.type, this.options.selector, $.proxy(this.toggle, this))
       } else if (trigger != 'manual') {
         var eventIn  = trigger == 'hover' ? 'mouseenter' : 'focusin'
         var eventOut = trigger == 'hover' ? 'mouseleave' : 'focusout'
 
+        // hover或者focus触发调用enter/leave方法
         this.$element.on(eventIn  + '.' + this.type, this.options.selector, $.proxy(this.enter, this))
         this.$element.on(eventOut + '.' + this.type, this.options.selector, $.proxy(this.leave, this))
       }
@@ -79,10 +83,12 @@
       this.fixTitle()
   }
 
+  // 返回默认自定义选项
   Tooltip.prototype.getDefaults = function () {
     return Tooltip.DEFAULTS
   }
 
+  // 获取自定义选项
   Tooltip.prototype.getOptions = function (options) {
     options = $.extend({}, this.getDefaults(), this.$element.data(), options)
 
@@ -96,6 +102,7 @@
     return options
   }
 
+  // 获取委托的自定义选项
   Tooltip.prototype.getDelegateOptions = function () {
     var options  = {}
     var defaults = this.getDefaults()
@@ -107,19 +114,24 @@
     return options
   }
 
+  // 提示框显示
   Tooltip.prototype.enter = function (obj) {
+    // 要不通过toggle方法来触发的enter，要不通过hover/focus触发的，所以obj要不为event对象，要不为tooltip实例对象
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget).data('bs.' + this.type)
 
+    // 如果不存在self，说明是hover/focus触发，而且是委托
     if (!self) {
       self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
       $(obj.currentTarget).data('bs.' + this.type, self)
     }
 
+    // 如果是obj是event对象，那么切换focus/hover状态
     if (obj instanceof $.Event) {
       self.inState[obj.type == 'focusin' ? 'focus' : 'hover'] = true
     }
 
+    // 如果提示框模板元素已经显示，那么不做任何操作直接返回
     if (self.tip().hasClass('in') || self.hoverState == 'in') {
       self.hoverState = 'in'
       return
@@ -131,11 +143,13 @@
 
     if (!self.options.delay || !self.options.delay.show) return self.show()
 
+    // 根据定时器时间来执行提示框显示操作
     self.timeout = setTimeout(function () {
       if (self.hoverState == 'in') self.show()
     }, self.options.delay.show)
   }
 
+  // 判断是否存在显示条件
   Tooltip.prototype.isInStateTrue = function () {
     for (var key in this.inState) {
       if (this.inState[key]) return true
@@ -342,6 +356,7 @@
     return this
   }
 
+  // 默认使用title属性作为提示框内容
   Tooltip.prototype.fixTitle = function () {
     var $e = this.$element
     if ($e.attr('title') || typeof $e.attr('data-original-title') != 'string') {
@@ -427,6 +442,7 @@
     return prefix
   }
 
+  // 获取提示模板元素
   Tooltip.prototype.tip = function () {
     if (!this.$tip) {
       this.$tip = $(this.options.template)
@@ -453,21 +469,26 @@
     this.enabled = !this.enabled
   }
 
+  // 切换提示框显示状态
   Tooltip.prototype.toggle = function (e) {
     var self = this
     if (e) {
+      // 如果是事件委托的话，那么提示框元素并不会存储bs.tooltip属性对象，而是存储到委托元素上去了，所以重新为提示框元素初始化
       self = $(e.currentTarget).data('bs.' + this.type)
       if (!self) {
+        // getDelegateOptions: 重置CSS选择器，并将触发器设置为manual，并不设置监听，而是继续使用委托
         self = new this.constructor(e.currentTarget, this.getDelegateOptions())
         $(e.currentTarget).data('bs.' + this.type, self)
       }
     }
 
     if (e) {
+      // 切换点击状态，判断是否存在显示条件，并执行相应操作
       self.inState.click = !self.inState.click
       if (self.isInStateTrue()) self.enter(self)
       else self.leave(self)
     } else {
+      // 如果不存在参数e，那么动态判断当前点击提示框是否显示，并执行相应操作
       self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
     }
   }
@@ -487,10 +508,8 @@
     })
   }
 
-
   // TOOLTIP PLUGIN DEFINITION
   // =========================
-
   function Plugin(option) {
     return this.each(function () {
       var $this   = $(this)
@@ -508,13 +527,10 @@
   $.fn.tooltip             = Plugin
   $.fn.tooltip.Constructor = Tooltip
 
-
   // TOOLTIP NO CONFLICT
   // ===================
-
   $.fn.tooltip.noConflict = function () {
     $.fn.tooltip = old
     return this
   }
-
 }(jQuery);

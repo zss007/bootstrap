@@ -1227,21 +1227,18 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: tooltip.js v3.3.7
+ * Bootstrap: tooltip.js v3.3.7(提示框插件)
  * http://getbootstrap.com/javascript/#tooltip
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
-
-
 +function ($) {
   'use strict';
 
   // TOOLTIP PUBLIC CLASS DEFINITION
   // ===============================
-
   var Tooltip = function (element, options) {
     this.type       = null
     this.options    = null
@@ -1336,6 +1333,7 @@ if (typeof jQuery === 'undefined') {
   }
 
   Tooltip.prototype.enter = function (obj) {
+    console.log('enter', obj, obj instanceof this.constructor, $(obj.currentTarget).data('bs.' + this.type))
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget).data('bs.' + this.type)
 
@@ -1685,7 +1683,9 @@ if (typeof jQuery === 'undefined') {
     var self = this
     if (e) {
       self = $(e.currentTarget).data('bs.' + this.type)
+      console.log('toggle self',!!self)
       if (!self) {
+        console.log('toggle getDelegateOptions')
         self = new this.constructor(e.currentTarget, this.getDelegateOptions())
         $(e.currentTarget).data('bs.' + this.type, self)
       }
@@ -1718,7 +1718,6 @@ if (typeof jQuery === 'undefined') {
 
   // TOOLTIP PLUGIN DEFINITION
   // =========================
-
   function Plugin(option) {
     return this.each(function () {
       var $this   = $(this)
@@ -1736,15 +1735,12 @@ if (typeof jQuery === 'undefined') {
   $.fn.tooltip             = Plugin
   $.fn.tooltip.Constructor = Tooltip
 
-
   // TOOLTIP NO CONFLICT
   // ===================
-
   $.fn.tooltip.noConflict = function () {
     $.fn.tooltip = old
     return this
   }
-
 }(jQuery);
 
 /* ========================================================================
