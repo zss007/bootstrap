@@ -2027,19 +2027,16 @@ if (typeof jQuery === 'undefined') {
 
 /* ========================================================================
  * Bootstrap: tab.js v3.3.7
- * http://getbootstrap.com/javascript/#tabs
+ * http://getbootstrap.com/javascript/#tabs(选项卡插件)
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
-
-
 +function ($) {
   'use strict';
 
   // TAB CLASS DEFINITION
   // ====================
-
   var Tab = function (element) {
     // jscs:disable requireDollarBeforejQueryAssignment
     this.element = $(element)
@@ -2047,7 +2044,6 @@ if (typeof jQuery === 'undefined') {
   }
 
   Tab.VERSION = '3.3.7'
-
   Tab.TRANSITION_DURATION = 150
 
   Tab.prototype.show = function () {
@@ -2110,6 +2106,7 @@ if (typeof jQuery === 'undefined') {
         .find('[data-toggle="tab"]')
           .attr('aria-expanded', true)
 
+      // 如果存在transition，强制回流开启动画；如果不存在则移除fade
       if (transition) {
         element[0].offsetWidth // reflow for transition
         element.addClass('in')
@@ -2138,10 +2135,8 @@ if (typeof jQuery === 'undefined') {
     $active.removeClass('in')
   }
 
-
   // TAB PLUGIN DEFINITION
   // =====================
-
   function Plugin(option) {
     return this.each(function () {
       var $this = $(this)
@@ -2157,19 +2152,15 @@ if (typeof jQuery === 'undefined') {
   $.fn.tab             = Plugin
   $.fn.tab.Constructor = Tab
 
-
   // TAB NO CONFLICT
   // ===============
-
   $.fn.tab.noConflict = function () {
     $.fn.tab = old
     return this
   }
 
-
   // TAB DATA-API
   // ============
-
   var clickHandler = function (e) {
     e.preventDefault()
     Plugin.call($(this), 'show')
@@ -2178,7 +2169,6 @@ if (typeof jQuery === 'undefined') {
   $(document)
     .on('click.bs.tab.data-api', '[data-toggle="tab"]', clickHandler)
     .on('click.bs.tab.data-api', '[data-toggle="pill"]', clickHandler)
-
 }(jQuery);
 
 /* ========================================================================
