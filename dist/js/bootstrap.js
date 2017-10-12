@@ -1853,20 +1853,17 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: scrollspy.js v3.3.7
+ * Bootstrap: scrollspy.js v3.3.7(滚动侦测)
  * http://getbootstrap.com/javascript/#scrollspy
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
-
-
 +function ($) {
   'use strict';
 
   // SCROLLSPY CLASS DEFINITION
   // ==========================
-
   function ScrollSpy(element, options) {
     this.$body          = $(document.body)
     this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
@@ -1883,12 +1880,12 @@ if (typeof jQuery === 'undefined') {
   }
 
   ScrollSpy.VERSION  = '3.3.7'
-
   ScrollSpy.DEFAULTS = {
     offset: 10
   }
 
   ScrollSpy.prototype.getScrollHeight = function () {
+    // 如果$scrollElement是$(window)，那么this.$scrollElement[0].scrollHeight为undefined
     return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
   }
 
@@ -1986,7 +1983,6 @@ if (typeof jQuery === 'undefined') {
 
   // SCROLLSPY PLUGIN DEFINITION
   // ===========================
-
   function Plugin(option) {
     return this.each(function () {
       var $this   = $(this)
@@ -2003,26 +1999,21 @@ if (typeof jQuery === 'undefined') {
   $.fn.scrollspy             = Plugin
   $.fn.scrollspy.Constructor = ScrollSpy
 
-
   // SCROLLSPY NO CONFLICT
   // =====================
-
   $.fn.scrollspy.noConflict = function () {
     $.fn.scrollspy = old
     return this
   }
 
-
   // SCROLLSPY DATA-API
   // ==================
-
   $(window).on('load.bs.scrollspy.data-api', function () {
     $('[data-spy="scroll"]').each(function () {
       var $spy = $(this)
       Plugin.call($spy, $spy.data())
     })
   })
-
 }(jQuery);
 
 /* ========================================================================
