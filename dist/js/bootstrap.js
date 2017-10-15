@@ -2163,20 +2163,17 @@ if (typeof jQuery === 'undefined') {
 }(jQuery);
 
 /* ========================================================================
- * Bootstrap: affix.js v3.3.7
+ * Bootstrap: affix.js v3.3.7(自动定位浮标)
  * http://getbootstrap.com/javascript/#affix
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
-
-
 +function ($) {
   'use strict';
 
   // AFFIX CLASS DEFINITION
   // ======================
-
   var Affix = function (element, options) {
     this.options = $.extend({}, Affix.DEFAULTS, options)
 
@@ -2231,7 +2228,7 @@ if (typeof jQuery === 'undefined') {
     return (this.pinnedOffset = position.top - scrollTop)
   }
 
-  Affix.prototype.checkPositionWithEventLoop = function () {
+  Affix.prototype.checkPositionWithEventLoop = function (e) {
     setTimeout($.proxy(this.checkPosition, this), 1)
   }
 
@@ -2251,13 +2248,12 @@ if (typeof jQuery === 'undefined') {
     var affix = this.getState(scrollHeight, height, offsetTop, offsetBottom)
 
     if (this.affixed != affix) {
-      if (this.unpin != null) this.$element.css('top', '')
+      if (this.unpin != null) this.$element.css('top', ''), this.$element.css('position', '')
 
       var affixType = 'affix' + (affix ? '-' + affix : '')
+
       var e         = $.Event(affixType + '.bs.affix')
-
       this.$element.trigger(e)
-
       if (e.isDefaultPrevented()) return
 
       this.affixed = affix
@@ -2279,7 +2275,6 @@ if (typeof jQuery === 'undefined') {
 
   // AFFIX PLUGIN DEFINITION
   // =======================
-
   function Plugin(option) {
     return this.each(function () {
       var $this   = $(this)
@@ -2296,19 +2291,15 @@ if (typeof jQuery === 'undefined') {
   $.fn.affix             = Plugin
   $.fn.affix.Constructor = Affix
 
-
   // AFFIX NO CONFLICT
   // =================
-
   $.fn.affix.noConflict = function () {
     $.fn.affix = old
     return this
   }
 
-
   // AFFIX DATA-API
   // ==============
-
   $(window).on('load', function () {
     $('[data-spy="affix"]').each(function () {
       var $spy = $(this)
@@ -2322,5 +2313,4 @@ if (typeof jQuery === 'undefined') {
       Plugin.call($spy, data)
     })
   })
-
 }(jQuery);
