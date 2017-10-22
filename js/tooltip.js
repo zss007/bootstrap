@@ -9,16 +9,16 @@
 +function ($) {
   'use strict';
 
-  // TOOLTIP PUBLIC CLASS DEFINITION
+  // TOOLTIP PUBLIC CLASS DEFINITION(提示框定义)
   // ===============================
   var Tooltip = function (element, options) {
-    this.type       = null
-    this.options    = null
-    this.enabled    = null
-    this.timeout    = null
-    this.hoverState = null
-    this.$element   = null
-    this.inState    = null
+    this.type       = null  // 插件类型
+    this.options    = null  // 自定义属性
+    this.enabled    = null  // 标志量，控制tooltip是否可以显示
+    this.timeout    = null  // 定时器
+    this.hoverState = null  // 提示框显示状态
+    this.$element   = null  // 对象绑定的元素
+    this.inState    = null  // 操作状态
 
     this.init('tooltip', element, options)
   }
@@ -27,16 +27,17 @@
 
   Tooltip.TRANSITION_DURATION = 150
 
+  // 提示框默认设置
   Tooltip.DEFAULTS = {
-    animation: true,
-    placement: 'top',
-    selector: false,
-    template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',
-    trigger: 'hover focus',
-    title: '',
-    delay: 0,
-    html: false,
-    container: false,
+    animation: true,  // 是否使用动画
+    placement: 'top',  // 设置提示框内容位置信息
+    selector: false,  // CSS选择器，用于事件委托
+    template: '<div class="tooltip" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>',  // 提示框模板
+    trigger: 'hover focus',  // 触发方法
+    title: '',  // 提示框标题内容
+    delay: 0,  // 提示框显示隐藏延时时间
+    html: false,  // 设置'tooltip-inner'内内容html片段还是text纯文本
+    container: false,  // 提示框容器
     viewport: {
       selector: 'body',
       padding: 0
@@ -145,6 +146,7 @@
 
     // 根据定时器时间来执行提示框显示操作
     self.timeout = setTimeout(function () {
+      // 如果定时器执行时，状态已经被切换了，那么需要重新根据状态判断是否继续进行操作
       if (self.hoverState == 'in') self.show()
     }, self.options.delay.show)
   }
@@ -158,19 +160,24 @@
     return false
   }
 
+  // 提示框隐藏
   Tooltip.prototype.leave = function (obj) {
+    // 要不通过toggle方法来触发的leave，要不通过hover/focus触发的，所以obj要不为event对象，要不为tooltip实例对象
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget).data('bs.' + this.type)
 
+    // 如果不存在self，说明是hover/focus触发，而且是委托
     if (!self) {
       self = new this.constructor(obj.currentTarget, this.getDelegateOptions())
       $(obj.currentTarget).data('bs.' + this.type, self)
     }
 
+    // 如果是obj是event对象，那么切换focus/hover状态
     if (obj instanceof $.Event) {
       self.inState[obj.type == 'focusout' ? 'focus' : 'hover'] = false
     }
 
+    // 如果存在还显示的状态，那么直接返回
     if (self.isInStateTrue()) return
 
     clearTimeout(self.timeout)
@@ -180,51 +187,63 @@
     if (!self.options.delay || !self.options.delay.hide) return self.hide()
 
     self.timeout = setTimeout(function () {
+      // 如果定时器执行时，状态已经被切换了，那么需要重新根据状态判断是否继续进行操作
       if (self.hoverState == 'out') self.hide()
     }, self.options.delay.hide)
   }
 
+  // 显示提示框具体操作
   Tooltip.prototype.show = function () {
+    // 自定义事件
     var e = $.Event('show.bs.' + this.type)
 
+    // 如果存在显示标题内容而且显示控制标志量enabled为true
     if (this.hasContent() && this.enabled) {
       this.$element.trigger(e)
 
+      // 判断对象对应的dom是否在文档内
       var inDom = $.contains(this.$element[0].ownerDocument.documentElement, this.$element[0])
       if (e.isDefaultPrevented() || !inDom) return
+
       var that = this
+      var $tip = this.tip()  // 获取提示框DOM元素
+      var tipId = this.getUID(this.type)  // 获取不存在于document中的ID
 
-      var $tip = this.tip()
+      this.setContent()  // 设置标题模板内容
+      $tip.attr('id', tipId)  // 设置模板id
+      this.$element.attr('aria-describedby', tipId)  // 设置触发元素aria-describedby属性
 
-      var tipId = this.getUID(this.type)
+      if (this.options.animation) $tip.addClass('fade')  // 如果使用动画，添加fade类
 
-      this.setContent()
-      $tip.attr('id', tipId)
-      this.$element.attr('aria-describedby', tipId)
-
-      if (this.options.animation) $tip.addClass('fade')
-
+      // 获取提示框位置信息
       var placement = typeof this.options.placement == 'function' ?
         this.options.placement.call(this, $tip[0], this.$element[0]) :
         this.options.placement
 
+      // 如果使用auto，尽量会被替换掉，默认替换为top；如果同时存在其他方向，默认使用其他方向
       var autoToken = /\s?auto?\s?/i
       var autoPlace = autoToken.test(placement)
       if (autoPlace) placement = placement.replace(autoToken, '') || 'top'
 
+      // 设置提示框样式
       $tip
-        .detach()
+        .detach()  // detach() 删除匹配的对象；与remove()不同的是，所有绑定的事件、附加的数据等都会保留下来
         .css({ top: 0, left: 0, display: 'block' })
         .addClass(placement)
         .data('bs.' + this.type, this)
 
+      // 将提示框添加到文档中
       this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
+      // 触发自定义事件'inserted.bs.tooltip'
       this.$element.trigger('inserted.bs.' + this.type)
 
+      // 位置对象pos =  {top: , right: , bottom: , left: , width: ,scroll:}
       var pos          = this.getPosition()
+      // 提示框自身实际的 width height
       var actualWidth  = $tip[0].offsetWidth
       var actualHeight = $tip[0].offsetHeight
 
+      // 如果出现了auto，那么根据viewport动态调整placement
       if (autoPlace) {
         var orgPlacement = placement
         var viewportDim = this.getPosition(this.$viewport)
@@ -240,8 +259,10 @@
           .addClass(placement)
       }
 
+      // 计算提示框的偏移量 {top: , left: }
       var calculatedOffset = this.getCalculatedOffset(placement, pos, actualWidth, actualHeight)
 
+      // 应用并设置偏移量
       this.applyPlacement(calculatedOffset, placement)
 
       var complete = function () {
@@ -249,6 +270,7 @@
         that.$element.trigger('shown.bs.' + that.type)
         that.hoverState = null
 
+        // 其实这里不太需要，因为就算连续点击两次，后面hide方法会将hoverState设置为null；就算改成prevHoverState==null也只是连续执行两次leave
         if (prevHoverState == 'out') that.leave(that)
       }
 
@@ -260,24 +282,28 @@
     }
   }
 
+  // 应用并设置偏移量
   Tooltip.prototype.applyPlacement = function (offset, placement) {
     var $tip   = this.tip()
     var width  = $tip[0].offsetWidth
     var height = $tip[0].offsetHeight
 
     // manually read margins because getBoundingClientRect includes difference
+    // 获得提示框自身的外边距的值
     var marginTop = parseInt($tip.css('margin-top'), 10)
     var marginLeft = parseInt($tip.css('margin-left'), 10)
 
-    // we must check for NaN for ie 8/9
+    // we must check for NaN for ie 8/9(是否是非数字)
     if (isNaN(marginTop))  marginTop  = 0
     if (isNaN(marginLeft)) marginLeft = 0
 
+    // 计算的偏移量 + 自身的外边距
     offset.top  += marginTop
     offset.left += marginLeft
 
     // $.fn.offset doesn't round pixel values
     // so we use setOffset directly with our own function B-0
+    // 应用了offset.setOffset方法，传入了using参数，因为offset设置值的时候，不能四舍五入
     $.offset.setOffset($tip[0], $.extend({
       using: function (props) {
         $tip.css({
@@ -287,9 +313,11 @@
       }
     }, offset), 0)
 
+    // 添加 in class 让提示框显示
     $tip.addClass('in')
 
     // check to see if placing tip in new offset caused the tip to resize itself
+    // 获取显示后的提示框的宽和高，检查是否调整了自身的大小
     var actualWidth  = $tip[0].offsetWidth
     var actualHeight = $tip[0].offsetHeight
 
@@ -297,6 +325,7 @@
       offset.top = offset.top + height - actualHeight
     }
 
+    // 根据viewport调整位置
     var delta = this.getViewportAdjustedDelta(placement, offset, actualWidth, actualHeight)
 
     if (delta.left) offset.left += delta.left
@@ -310,12 +339,14 @@
     this.replaceArrow(arrowDelta, $tip[0][arrowOffsetPosition], isVertical)
   }
 
+  // 更新箭头位置
   Tooltip.prototype.replaceArrow = function (delta, dimension, isVertical) {
     this.arrow()
       .css(isVertical ? 'left' : 'top', 50 * (1 - delta / dimension) + '%')
       .css(isVertical ? 'top' : 'left', '')
   }
 
+  // 设置内容，并移除上面的
   Tooltip.prototype.setContent = function () {
     var $tip  = this.tip()
     var title = this.getTitle()
@@ -324,12 +355,14 @@
     $tip.removeClass('fade in top bottom left right')
   }
 
+  // 隐藏提示框具体操作
   Tooltip.prototype.hide = function (callback) {
     var that = this
     var $tip = $(this.$tip)
     var e    = $.Event('hide.bs.' + this.type)
 
     function complete() {
+      // 如果在提示框显示时，连续两次点击(假设元素触发方法为click，而且点击快速在动画时间内)，那么不销毁提示框模板元素，如果销毁会有问题
       if (that.hoverState != 'in') $tip.detach()
       if (that.$element) { // TODO: Check whether guarding this code with this `if` is really necessary.
         that.$element
@@ -364,17 +397,23 @@
     }
   }
 
+  // 是否有显示内容
   Tooltip.prototype.hasContent = function () {
     return this.getTitle()
   }
 
+  // 获取位置
   Tooltip.prototype.getPosition = function ($element) {
+    // 不传入则为当前点击元素
     $element   = $element || this.$element
 
+    // 转换为DOM对象
     var el     = $element[0]
+    // 是否是body元素
     var isBody = el.tagName == 'BODY'
-
+    // 获取元素各边与页面上边和左边的距离 left right top bottom height width
     var elRect    = el.getBoundingClientRect()
+    //兼容IE8 没有 width height 则计算
     if (elRect.width == null) {
       // width and height are missing in IE8, so compute them manually; see https://github.com/twbs/bootstrap/issues/14093
       elRect = $.extend({}, elRect, { width: elRect.right - elRect.left, height: elRect.bottom - elRect.top })
@@ -382,13 +421,17 @@
     var isSvg = window.SVGElement && el instanceof window.SVGElement
     // Avoid using $.offset() on SVGs since it gives incorrect results in jQuery 3.
     // See https://github.com/twbs/bootstrap/issues/20280
+    // 当前元素相对于文档的偏移量(因为SVG上得不到正确的offset结果，所以返回null)
     var elOffset  = isBody ? { top: 0, left: 0 } : (isSvg ? null : $element.offset())
+    // 垂直滚动条的距离(document.documentElement.scrollTop和document.body.scrollTop 浏览器兼容)
     var scroll    = { scroll: isBody ? document.documentElement.scrollTop || document.body.scrollTop : $element.scrollTop() }
     var outerDims = isBody ? { width: $(window).width(), height: $(window).height() } : null
 
+    // 合并
     return $.extend({}, elRect, scroll, outerDims, elOffset)
   }
 
+  // 计算偏移量
   Tooltip.prototype.getCalculatedOffset = function (placement, pos, actualWidth, actualHeight) {
     return placement == 'bottom' ? { top: pos.top + pos.height,   left: pos.left + pos.width / 2 - actualWidth / 2 } :
            placement == 'top'    ? { top: pos.top - actualHeight, left: pos.left + pos.width / 2 - actualWidth / 2 } :
@@ -397,11 +440,14 @@
 
   }
 
+  // 根据视口调节
   Tooltip.prototype.getViewportAdjustedDelta = function (placement, pos, actualWidth, actualHeight) {
     var delta = { top: 0, left: 0 }
+    //默认的话，this.$viewport = 'body'
     if (!this.$viewport) return delta
 
     var viewportPadding = this.options.viewport && this.options.viewport.padding || 0
+    //this.$viewport = 'body' width height为window的
     var viewportDimensions = this.getPosition(this.$viewport)
 
     if (/right|left/.test(placement)) {
@@ -425,6 +471,7 @@
     return delta
   }
 
+  // 获取标题内容
   Tooltip.prototype.getTitle = function () {
     var title
     var $e = this.$element
@@ -436,6 +483,7 @@
     return title
   }
 
+  // 获取'tooltipxxx'格式的id(用do..while得到不存在于document中的ID)
   Tooltip.prototype.getUID = function (prefix) {
     do prefix += ~~(Math.random() * 1000000)
     while (document.getElementById(prefix))
@@ -453,18 +501,22 @@
     return this.$tip
   }
 
+  // 获取提示箭头(tooltip-arrow类)
   Tooltip.prototype.arrow = function () {
     return (this.$arrow = this.$arrow || this.tip().find('.tooltip-arrow'))
   }
 
+  // 设置enabled为true，使得提示框能够正常显示
   Tooltip.prototype.enable = function () {
     this.enabled = true
   }
 
+  // 与enable相反
   Tooltip.prototype.disable = function () {
     this.enabled = false
   }
 
+  // 切换enabled
   Tooltip.prototype.toggleEnabled = function () {
     this.enabled = !this.enabled
   }
@@ -488,11 +540,12 @@
       if (self.isInStateTrue()) self.enter(self)
       else self.leave(self)
     } else {
-      // 如果不存在参数e，那么动态判断当前点击提示框是否显示，并执行相应操作
+      // 如果不存在参数e(JS调用toggle触发)，那么动态判断当前点击提示框是否显示，并执行相应操作
       self.tip().hasClass('in') ? self.leave(self) : self.enter(self)
     }
   }
 
+  // 销毁tooltip实例
   Tooltip.prototype.destroy = function () {
     var that = this
     clearTimeout(this.timeout)
@@ -516,6 +569,7 @@
       var data    = $this.data('bs.tooltip')
       var options = typeof option == 'object' && option
 
+      // 如果没有tooltip初始化，那么直接指向destroy|hide方法不进行任何操作
       if (!data && /destroy|hide/.test(option)) return
       if (!data) $this.data('bs.tooltip', (data = new Tooltip(this, options)))
       if (typeof option == 'string') data[option]()

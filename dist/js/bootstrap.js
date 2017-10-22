@@ -1333,7 +1333,6 @@ if (typeof jQuery === 'undefined') {
   }
 
   Tooltip.prototype.enter = function (obj) {
-    console.log('enter', obj, obj instanceof this.constructor, $(obj.currentTarget).data('bs.' + this.type))
     var self = obj instanceof this.constructor ?
       obj : $(obj.currentTarget).data('bs.' + this.type)
 
@@ -1434,6 +1433,7 @@ if (typeof jQuery === 'undefined') {
       this.$element.trigger('inserted.bs.' + this.type)
 
       var pos          = this.getPosition()
+
       var actualWidth  = $tip[0].offsetWidth
       var actualHeight = $tip[0].offsetHeight
 
@@ -1490,7 +1490,9 @@ if (typeof jQuery === 'undefined') {
 
     // $.fn.offset doesn't round pixel values
     // so we use setOffset directly with our own function B-0
+    // 根据第一个不是static定位的父元素获取相应的位置信息及设置
     $.offset.setOffset($tip[0], $.extend({
+      // props跟offset(相对于文档)不同，是相对于第一个不是static定位的父元素而言的
       using: function (props) {
         $tip.css({
           top: Math.round(props.top),
@@ -1683,9 +1685,7 @@ if (typeof jQuery === 'undefined') {
     var self = this
     if (e) {
       self = $(e.currentTarget).data('bs.' + this.type)
-      console.log('toggle self',!!self)
       if (!self) {
-        console.log('toggle getDelegateOptions')
         self = new this.constructor(e.currentTarget, this.getDelegateOptions())
         $(e.currentTarget).data('bs.' + this.type, self)
       }

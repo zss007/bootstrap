@@ -1,8 +1,8 @@
 //
-// Tooltips
+// Tooltips(提示框)
 // --------------------------------------------------
 
-// Base class
+// Base class(基础样式)
 .tooltip {
   position: absolute;
   z-index: @zindex-tooltip;
@@ -21,7 +21,7 @@
   &.left   { margin-left: -3px; padding: 0 @tooltip-arrow-width; }
 }
 
-// Wrapper for the tooltip content
+// Wrapper for the tooltip content(提示框文本内容)
 .tooltip-inner {
   max-width: @tooltip-max-width;
   padding: 3px 8px;
@@ -31,7 +31,7 @@
   border-radius: @border-radius-base;
 }
 
-// Arrows
+// Arrows(提示框箭头)
 .tooltip-arrow {
   position: absolute;
   width: 0;
@@ -39,7 +39,7 @@
   border-color: transparent;
   border-style: solid;
 }
-// Note: Deprecated .top-left, .top-right, .bottom-left, and .bottom-right as of v3.3.1
+// Note: Deprecated .top-left, .top-right, .bottom-left, and .bottom-right as of v3.3.1(提示框不同方向的箭头指向)
 .tooltip {
   &.top .tooltip-arrow {
     bottom: 0;
