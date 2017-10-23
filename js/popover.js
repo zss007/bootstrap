@@ -5,14 +5,11 @@
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
-
-
 +function ($) {
   'use strict';
 
   // POPOVER PUBLIC CLASS DEFINITION
   // ===============================
-
   var Popover = function (element, options) {
     this.init('popover', element, options)
   }
@@ -20,7 +17,6 @@
   if (!$.fn.tooltip) throw new Error('Popover requires tooltip.js')
 
   Popover.VERSION  = '3.3.7'
-
   Popover.DEFAULTS = $.extend({}, $.fn.tooltip.Constructor.DEFAULTS, {
     placement: 'right',
     trigger: 'click',
@@ -28,10 +24,8 @@
     template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
   })
 
-
   // NOTE: POPOVER EXTENDS tooltip.js
   // ================================
-
   Popover.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype)
 
   Popover.prototype.constructor = Popover
@@ -75,10 +69,8 @@
     return (this.$arrow = this.$arrow || this.tip().find('.arrow'))
   }
 
-
   // POPOVER PLUGIN DEFINITION
   // =========================
-
   function Plugin(option) {
     return this.each(function () {
       var $this   = $(this)
@@ -96,13 +88,10 @@
   $.fn.popover             = Plugin
   $.fn.popover.Constructor = Popover
 
-
   // POPOVER NO CONFLICT
   // ===================
-
   $.fn.popover.noConflict = function () {
     $.fn.popover = old
     return this
   }
-
 }(jQuery);

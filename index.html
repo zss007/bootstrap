@@ -9,68 +9,13 @@
   <script type="text/javascript" src="./dist/js/bootstrap.js"></script>
 </head>
 <body>
-<h3>按钮做的提示框</h3>
-<button type="button"
-        class="btn btn-default"
-        data-toggle="tooltip"
-        data-placement="top"
-        data-original-title="提示框在顶部">提示框在顶部
-</button>
-<button type="button"
-        class="btn btn-default"
-        data-toggle="tooltip"
-        data-placement="left"
-        data-original-title="提示框居左"
-        title="">提示框居左
-</button>
-<div style="position: relative">
-  <button type="button"
-          class="btn btn-default"
-          data-toggle="tooltip"
-          data-placement="bottom"
-          data-original-title="提示框在底部">提示框在底部
-  </button>
-</div>
-<button type="button"
-        class="btn btn-default"
-        data-toggle="tooltip"
-        data-placement="right"
-        data-original-title="提示框居右">提示框居右
-</button>
-<h3>链接制作的提示框</h3>
-<a class="btn btn-primary"
-   data-toggle="tooltip"
-   data-placement="top"
-   data-original-title="提示框在顶部2333"
-   title="提示框在顶部">提示框在顶部</a>
-<a class="btn btn-primary"
-   data-toggle="tooltip"
-   data-placement="left"
-   title="提示框居左">提示框居左</a>
-<a class="btn btn-primary"
-   data-toggle="tooltip"
-   data-placement="bottom"
-   title="提示框在底部">提示框在底部</a>
-<a class="btn btn-primary"
-   data-toggle="tooltip"
-   data-placement="right"
-   title="提示框在居右">提示框居右</a>
-<a href="##"
-   class="btn btn-primary"
-   id="myTooltip">我是提示框</a>
-<a href="##"
-   class="btn btn-primary"
-   id="myTooltip2">我是提示框2</a>
+<button type="button" class="btn btn-default" id="myPopover">猛击我吧</button>
 <script>
-  $(function () {
-    $(document).tooltip({
-      trigger: 'click',
-      enabled: false,
-      selector: '[data-toggle="tooltip"]'
-    });
-    $('#myTooltip').tooltip({
-      title: "我是一个提示框，我在顶部出现",
-      placement: 'top'
+  $(function(){
+    $('#myPopover').popover({
+      title:"我是弹出框的标题",
+      content:"我是弹出框的内容",
+      placement:"right"
     });
   });
 </script>
