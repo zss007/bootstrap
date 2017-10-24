@@ -24,22 +24,25 @@
     template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
   })
 
-  // NOTE: POPOVER EXTENDS tooltip.js
+  // NOTE: POPOVER EXTENDS tooltip.js(popover拓展tooltip，覆盖掉几个不同的表现方法就好了)
   // ================================
   Popover.prototype = $.extend({}, $.fn.tooltip.Constructor.prototype)
-
   Popover.prototype.constructor = Popover
 
+  // 获取默认设置
   Popover.prototype.getDefaults = function () {
     return Popover.DEFAULTS
   }
 
+  // 设置提示框
   Popover.prototype.setContent = function () {
     var $tip    = this.tip()
     var title   = this.getTitle()
     var content = this.getContent()
 
+    // 设置提示框标题
     $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
+    // 设置提示框内容
     $tip.find('.popover-content').children().detach().end()[ // we use append for html objects to maintain js events
       this.options.html ? (typeof content == 'string' ? 'html' : 'append') : 'text'
     ](content)
@@ -51,10 +54,12 @@
     if (!$tip.find('.popover-title').html()) $tip.find('.popover-title').hide()
   }
 
+  // 是否有显示内容(有标题或者内容)
   Popover.prototype.hasContent = function () {
     return this.getTitle() || this.getContent()
   }
 
+  // 获取提示框内容
   Popover.prototype.getContent = function () {
     var $e = this.$element
     var o  = this.options
@@ -65,6 +70,7 @@
             o.content)
   }
 
+  // 获取提示箭头(arrow类)
   Popover.prototype.arrow = function () {
     return (this.$arrow = this.$arrow || this.tip().find('.arrow'))
   }
